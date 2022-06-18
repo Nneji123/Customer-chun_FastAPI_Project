@@ -12,12 +12,12 @@ async def Home():
 
 @app.get('/{name}')
 def Info(name:str):
-    return {'Welcome {} Check the Bank Customer Prediction App!'.format(name)}
+    return {f'Welcome {name} Check the Bank Customer Prediction App!'}
 
 #a route for the model prediction
 @app.post('/predict')   
 def Customer(CreditScore: int, Geography:int, Gender: int, Age : int, Tenure:int, Balance:int, NumOfProduct:int,HasCrCard:int, IsActiveMember:int, EstimatedSalary:int):
-    
+
     model = pickle.load(open('C:/Users/User/Herokuapp/Customer_chun/chun_model.pkl','rb'))
     make_prediction = model.predict(([[CreditScore,Geography, Gender, Age, Tenure, Balance, NumOfProduct, HasCrCard, IsActiveMember, EstimatedSalary]]))
     result = make_prediction[0]
